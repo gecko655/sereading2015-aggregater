@@ -35,8 +35,10 @@ stream = Twitter::Streaming::Client.new do |config|
   config.access_token_secret = json["YOUR_ACCESS_SECRET"]
 end
 
-stream.filter(track: "#sereading -rt") do |object|
+stream.filter(track: "#sereading") do |object|
   if object.is_a?(Twitter::Tweet)
+    puts object.inspect
+
     if m = object.text.match(/(\d{1,2}-\d\+\+)/)
 
       open(output_file, "a") {|f|
