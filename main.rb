@@ -39,7 +39,7 @@ stream.filter(track: "#sereading") do |object|
   if object.is_a?(Twitter::Tweet)
     puts object.inspect
 
-    if m = object.text.match(/(\d{1,2}-\d\+\+)/)
+    if m = object.text.gsub(" ","").match(/(\d{1,2}-\d\+\+)/)
 
       open(output_file, "a") {|f|
         f.puts "#{m[1]} #{object.id}"
